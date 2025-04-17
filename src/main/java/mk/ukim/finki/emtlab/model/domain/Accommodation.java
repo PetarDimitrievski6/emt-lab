@@ -19,7 +19,7 @@ public class Accommodation {
     @ManyToOne
     private Host host;
     private Integer numRooms;
-    private Boolean rented;
+    private Boolean rented = false;
 
     public Accommodation(String name, Category category, Host host, Integer numRooms, Boolean rented) {
         this.name = name;
