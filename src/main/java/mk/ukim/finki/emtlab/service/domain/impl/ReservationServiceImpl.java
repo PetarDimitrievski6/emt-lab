@@ -42,9 +42,9 @@ class ReservationServiceImpl implements ReservationService {
     public Optional<Reservation> getUnconfirmedReservation(String username) {
         User user = userService.findByUsername(username);
 
-        return Optional.of(this.reservationRepository.findByUserAndStatus(
+        return Optional.of(this.reservationRepository.findByUserAndReservationStatus(
                 user,
-                ReservationStatus.UNCONFIRMED
+                ReservationStatus.PENDING
         ).orElseGet(() -> this.reservationRepository.save(new Reservation(user))));
     }
 

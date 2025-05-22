@@ -2,6 +2,7 @@ package mk.ukim.finki.emtlab.service.application;
 
 import mk.ukim.finki.emtlab.dto.CreateAccommodationDto;
 import mk.ukim.finki.emtlab.dto.DisplayAccommodationDto;
+import mk.ukim.finki.emtlab.dto.DisplayAccommodationsPerHostViewDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,4 +20,5 @@ public interface AccommodationApplicationService {
 
     Optional<DisplayAccommodationDto> rent(Long id);
 
+    List<DisplayAccommodationsPerHostViewDto> getAccommodationsPerHostView();
 }

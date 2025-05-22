@@ -1,4 +1,4 @@
-package mk.ukim.finki.emtlab.config;
+package mk.ukim.finki.emtlab.security;
 
 import mk.ukim.finki.emtlab.service.domain.UserService;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
+
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
@@ -46,5 +47,5 @@ public class CustomUsernamePasswordAuthenticationProvider implements Authenticat
     public boolean supports(Class<?> aClass) {
         return aClass.equals(UsernamePasswordAuthenticationToken.class);
     }
-
 }
+

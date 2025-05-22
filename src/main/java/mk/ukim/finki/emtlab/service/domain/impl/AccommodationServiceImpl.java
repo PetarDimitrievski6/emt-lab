@@ -1,7 +1,9 @@
 package mk.ukim.finki.emtlab.service.domain.impl;
 
 import mk.ukim.finki.emtlab.model.domain.Accommodation;
+import mk.ukim.finki.emtlab.model.views.AccommodationsPerHostView;
 import mk.ukim.finki.emtlab.repository.AccommodationRepository;
+import mk.ukim.finki.emtlab.repository.AccommodationsPerHostViewRepository;
 import mk.ukim.finki.emtlab.service.domain.AccommodationService;
 import mk.ukim.finki.emtlab.service.domain.HostService;
 import org.springframework.stereotype.Service;
@@ -13,10 +15,12 @@ import java.util.Optional;
 public class AccommodationServiceImpl implements AccommodationService {
     private final AccommodationRepository accommodationRepository;
     private final HostService hostService;
+    private final AccommodationsPerHostViewRepository accommodationsPerHostViewRepository;
 
-    public AccommodationServiceImpl(AccommodationRepository accommodationRepository, HostService hostService) {
+    public AccommodationServiceImpl(AccommodationRepository accommodationRepository, HostService hostService, AccommodationsPerHostViewRepository accommodationsPerHostViewRepository) {
         this.accommodationRepository = accommodationRepository;
         this.hostService = hostService;
+        this.accommodationsPerHostViewRepository = accommodationsPerHostViewRepository;
     }
 
 
@@ -77,5 +81,15 @@ public class AccommodationServiceImpl implements AccommodationService {
                     existingAccommodation.setRented(!existingAccommodation.getRented());
                     return this.accommodationRepository.save(existingAccommodation);
                 });
+    }
+
+    @Override
+    public void refreshMaterializedView() {
+        this.accommodationsPerHostViewRepository.refreshMaterializedView();
+    }
+
+    @Override
+    public List<AccommodationsPerHostView> getAccommodationsPerHostView() {
+        return this.accommodationsPerHostViewRepository.findAll();
     }
 }

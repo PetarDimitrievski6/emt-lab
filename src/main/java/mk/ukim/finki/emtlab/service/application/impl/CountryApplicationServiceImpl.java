@@ -4,10 +4,12 @@ import mk.ukim.finki.emtlab.dto.CreateCountryDto;
 import mk.ukim.finki.emtlab.dto.DisplayCountryDto;
 import mk.ukim.finki.emtlab.service.application.CountryApplicationService;
 import mk.ukim.finki.emtlab.service.domain.CountryService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CountryApplicationServiceImpl implements CountryApplicationService {
     private final CountryService countryService;
 

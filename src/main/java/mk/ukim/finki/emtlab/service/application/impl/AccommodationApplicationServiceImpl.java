@@ -2,6 +2,7 @@ package mk.ukim.finki.emtlab.service.application.impl;
 
 import mk.ukim.finki.emtlab.dto.CreateAccommodationDto;
 import mk.ukim.finki.emtlab.dto.DisplayAccommodationDto;
+import mk.ukim.finki.emtlab.dto.DisplayAccommodationsPerHostViewDto;
 import mk.ukim.finki.emtlab.model.domain.Host;
 import mk.ukim.finki.emtlab.service.application.AccommodationApplicationService;
 import mk.ukim.finki.emtlab.service.domain.AccommodationService;
@@ -53,5 +54,10 @@ public class AccommodationApplicationServiceImpl implements AccommodationApplica
     @Override
     public Optional<DisplayAccommodationDto> rent(Long id) {
         return this.accommodationService.rent(id).map(DisplayAccommodationDto::from);
+    }
+
+    @Override
+    public List<DisplayAccommodationsPerHostViewDto> getAccommodationsPerHostView() {
+        return this.accommodationService.getAccommodationsPerHostView().stream().map(DisplayAccommodationsPerHostViewDto::from).toList();
     }
 }

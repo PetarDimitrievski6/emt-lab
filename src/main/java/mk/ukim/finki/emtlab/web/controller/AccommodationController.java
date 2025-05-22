@@ -1,9 +1,10 @@
-package mk.ukim.finki.emtlab.web;
+package mk.ukim.finki.emtlab.web.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import mk.ukim.finki.emtlab.dto.CreateAccommodationDto;
 import mk.ukim.finki.emtlab.dto.DisplayAccommodationDto;
+import mk.ukim.finki.emtlab.dto.DisplayAccommodationsPerHostViewDto;
 import mk.ukim.finki.emtlab.service.application.AccommodationApplicationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,4 +64,9 @@ public class AccommodationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Get accommodations count per host", description = "Finds the count of accommodations per host")
+    @GetMapping("/by-host")
+    public List<DisplayAccommodationsPerHostViewDto> getAccommodationsPerHost() {
+        return this.accommodationApplicationService.getAccommodationsPerHostView();
+    }
 }

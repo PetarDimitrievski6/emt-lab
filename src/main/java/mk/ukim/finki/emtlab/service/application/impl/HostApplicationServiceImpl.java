@@ -2,14 +2,18 @@ package mk.ukim.finki.emtlab.service.application.impl;
 
 import mk.ukim.finki.emtlab.dto.CreateHostDto;
 import mk.ukim.finki.emtlab.dto.DisplayHostDto;
+import mk.ukim.finki.emtlab.dto.DisplayHostNameAndSurnameDto;
+import mk.ukim.finki.emtlab.dto.DisplayHostPerCountryViewDto;
 import mk.ukim.finki.emtlab.model.domain.Country;
 import mk.ukim.finki.emtlab.service.application.HostApplicationService;
 import mk.ukim.finki.emtlab.service.domain.CountryService;
 import mk.ukim.finki.emtlab.service.domain.HostService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class HostApplicationServiceImpl implements HostApplicationService {
     private final HostService hostService;
     private final CountryService countryService;
@@ -45,5 +49,15 @@ public class HostApplicationServiceImpl implements HostApplicationService {
         return this.hostService.update(id, createHostDto.toHost(
                 country.orElse(null)
         )).map(DisplayHostDto::from);
+    }
+
+    @Override
+    public List<DisplayHostPerCountryViewDto> getHostsPerCountryView() {
+        return DisplayHostPerCountryViewDto.from(this.hostService.getHostsPerCountryView());
+    }
+
+    @Override
+    public List<DisplayHostNameAndSurnameDto> takeNameAndSurnameByProjection() {
+        return DisplayHostNameAndSurnameDto.from(this.hostService.takeNameAndSurnameByProjection());
     }
 }

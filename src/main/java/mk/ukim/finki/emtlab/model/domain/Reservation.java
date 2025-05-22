@@ -22,7 +22,7 @@ public class Reservation {
     private List<Accommodation> accommodations;
 
     @Enumerated(EnumType.STRING)
-    private ReservationStatus reservationStatus = ReservationStatus.UNCONFIRMED;
+    private ReservationStatus reservationStatus = ReservationStatus.PENDING;
 
     public Reservation(User user, List<Accommodation> accommodations) {
         this.user = user;
